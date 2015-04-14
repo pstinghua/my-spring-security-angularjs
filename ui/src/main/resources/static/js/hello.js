@@ -8,7 +8,7 @@ angular.module('hello', ['ngRoute'])
             controller: 'navigation'
         }).otherwise('/');
 
-        //$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     })
     .controller('home', function ($scope, $http) {
         $http.get('/resource').success(function (data) {
