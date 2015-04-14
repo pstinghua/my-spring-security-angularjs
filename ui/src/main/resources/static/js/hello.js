@@ -11,7 +11,7 @@ angular.module('hello', ['ngRoute'])
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     })
     .controller('home', function ($scope, $http) {
-        $http.get('/resource').success(function (data) {
+        $http.get('http://localhost:9000/resource').success(function (data) {
             $scope.greeting = data;
         })
     })
@@ -33,7 +33,9 @@ angular.module('hello', ['ngRoute'])
         };
 
         authenticate();
+
         $scope.credentials = {};
+
         $scope.login = function () {
             authenticate($scope.credentials, function () {
                 if ($rootScope.authenticated) {
@@ -45,4 +47,13 @@ angular.module('hello', ['ngRoute'])
                 }
             });
         };
+
+        $scope.logout = function () {
+            $http.post('logout', {}).success(function () {
+                $rootScope.authenticated = false;
+                $location.path("/");
+            }).error(function () {
+                $rootScope.authenticated = false;
+            })
+        }
     });
