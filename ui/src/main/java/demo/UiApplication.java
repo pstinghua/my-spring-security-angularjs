@@ -10,17 +10,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @SpringBootApplication
 @RestController
+@EnableRedisHttpSession
 public class UiApplication {
 
     @RequestMapping("/user")
@@ -28,15 +28,10 @@ public class UiApplication {
         return principal;
     }
 
-/*
-    @RequestMapping("/resource")
-    public Map<String, Object> home() {
-        Map<String, Object> model = new HashMap<>();
-        model.put("id", UUID.randomUUID());
-        model.put("content", "Hello World");
-        return model;
+    @RequestMapping("/token")
+    public Map<String, String> token(HttpSession session) {
+        return Collections.singletonMap("token", session.getId());
     }
-*/
 
     public static void main(String[] args) {
         SpringApplication.run(UiApplication.class, args);
