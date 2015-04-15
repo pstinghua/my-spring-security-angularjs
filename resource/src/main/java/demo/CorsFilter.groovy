@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse
 /**
  * Created by xieyuanliang on 15-4-14.
  */
-@Component
+//@Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 class CorsFilter implements Filter {
 

@@ -1,0 +1,13 @@
+security:
+  user:
+    password: password
+
+logging:
+  level:
+    org.springframework.security: OFF
+
+zuul:
+  routes:
+    resource:
+      path: /resource/**
+      url: http://localhost:9000
