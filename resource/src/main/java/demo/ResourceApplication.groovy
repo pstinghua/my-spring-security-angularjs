@@ -2,15 +2,15 @@ package demo
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.cloud.security.oauth2.resource.EnableOAuth2Resource
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
 @RestController
-@EnableRedisHttpSession
+//@EnableRedisHttpSession
+@EnableOAuth2Resource
 class ResourceApplication extends WebSecurityConfigurerAdapter {
 
     @RequestMapping("/")
